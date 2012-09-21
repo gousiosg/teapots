@@ -16,5 +16,5 @@ scala Main ../teapot.txt
 
 Output
 ======
-<img file="https://github.com/gousiosg/teapots/blob/master/gousiosg/teapot.png"/>
+<img src="https://github.com/gousiosg/teapots/blob/master/gousiosg/teapot.png?raw=true"/>
 
