@@ -207,13 +207,13 @@ object Main {
   }
 
   def main(args: Array[String]) {
-    gui(bench(x => load.flatMap(x => split(x)).toList))
+    gui(bench(x => load(args(0)).flatMap(x => split(x)).toList))
     //gui(load)
     //test
   }
 
-  def load: List[Triangle] =
-    Source.fromFile("pot.txt").getLines.toList.foldLeft(List[Triangle]()) {
+  def load(file: String): List[Triangle] =
+    Source.fromFile(file).getLines.toList.foldLeft(List[Triangle]()) {
       (acc, line) => line match {
         case l if l.trim.size == 0 => acc
         case _ => Triangle(
