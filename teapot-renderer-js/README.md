@@ -10,4 +10,4 @@ We've also included a test suite we constructed when making this assignment. It 
 Example output for the teapot.txt input
 -------
 
-<img src="https://github.com/gousiosg/teapots/blob/master/teapot-reanderer-js/teapot.png?raw=true"/>
+<img src="https://github.com/gousiosg/teapots/blob/master/teapot-renderer-js/teapot.png?raw=true"/>
