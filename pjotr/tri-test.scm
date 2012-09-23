@@ -48,7 +48,7 @@
     (reverse (normalizes (fold append '()
       (map decompose
 	(map (lambda (x) (sort trisort x))
-	   (read-model "/home/pjotr/scheme/TweakedPot.txt")))
+	   (read-model "TweakedPot.txt")))
       ))))])
    (pp (length divs))
    (with-output-to-file "TweakedPot.divs" (delay

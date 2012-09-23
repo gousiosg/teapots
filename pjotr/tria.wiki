@@ -1,5 +1,5 @@
 <doc>
-,(module tria (import (tri "/home/pjotr/scheme/tria.scm")))
+,(module tria (import (tri "tria.scm")))
 ,(define dir (dirname (the-loading-file)))
 ,(define (test t) (let* ((t (sort trisort (normalize t)))
 			 (d (decompose t))
@@ -32,7 +32,7 @@
     (reverse (normalizes (fold append '()
       (map decompose
 	(map (lambda (x) (sort trisort x))
-	   (read-model "/home/pjotr/scheme/TweakedPot.txt")))
+	   (read-model "TweakedPot.txt")))
       ))))
 
 
@@ -64,7 +64,7 @@
 
 === Old SVG-based stuff...
 
-,(map test (read-model "/home/pjotr/scheme/tri.txt"))
+,(map test (read-model "tri.txt"))
 
 == Playground
 
