@@ -1,0 +1,38 @@
+body {
+	margin: 16px 0px;
+	font-family: courier new;
+	font-size: 11px;
+}
+
+#main {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#container {
+	position: absolute;
+	border: 1px solid #ccc;
+}
+
+#input-container {
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #888;
+	width: 600px;
+	height: 60px;
+}
+
+#input {
+	width: 408px;
+	height: 60px;
+	border: 1px solid #ccc;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+#control-div {
+	float: right;
+	width: 180px;
+}
