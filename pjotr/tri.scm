@@ -234,54 +234,6 @@
 		(< dy1 0.01) (< dy2 0.01) (< dy3 0.01)
 		))))
 	      
-(def (decompose-div t) ; and tag
- (if (small? t) (list (cons GE: t))
-   (cases t
-|| [((x1 y1) as p1) ((x2 y2) as p2) ((x3 y3) as p3)] when (= y1 y2) => ; top
-   (cond ([= x3 x1] (list (cons UL: t))) ; UL
-	 ([= x3 x2] (list (cons UR: t))) ; UR
-	 ([> x3 x2]
-	  (let-values ([(x y) (split #true p1 p2 p3)])
-	     (append ;'TOP
-		   (decompose-div (sort trisort (list p1 p2 `(,x ,y))))
-		   (decompose-div (sort trisort (list p2 `(,x ,y) p3))))
-	     ))
-	 ([< x3 x1]
-	  (let-values ([(x y) (split #true p2 p1 p3)])
-	     (append ;'TOP
-		   (decompose-div (sort trisort (list p1 p2 `(,x ,y))))
-		   (decompose-div (sort trisort (list p1 `(,x ,y) p3))))
-	     ))
-	 (else (list (cons UC: t))))     ; UC
-|| [((x1 y1) as p1) ((x2 y2) as p2) ((x3 y3) as p3)] when (= y2 y3) => ; bot
-   (cond ([= x1 x2] (list (cons DL: t))) ; DL
-	 ([= x1 x3] (list (cons DR: t))) ; DR
-	 ([> x1 x3]
-	  (let-values ([(x y) (split #true p1 p3 p2)])
-	     (append ;'BOT
-		   (decompose-div (sort trisort (list p1 `(,x ,y) p3)))
-		   (decompose-div (sort trisort (list `(,x ,y) p2 p3))))
-	     ))
-	 ([< x1 x2]
-	  (let-values ([(x y) (split #true p1 p2 p3)])
-	     (append ;'BOT
-		   (decompose-div (sort trisort (list p1 `(,x ,y) p2)))
-		   (decompose-div (sort trisort (list `(,x ,y) p2 p3))))
-	     ))
-	 (else (list (cons DC: t))))     ; DC we are done
-|| [((x1 y1) as p1) ((x2 y2) as p2) ((x3 y3) as p3)] => ; split
-   (cond
-      ([and (= x1 x3) (>= x2 x1) (< y2 y1) (< y3 y2)] (list (cons LC: t)))     ; LC
-      ([and (= x1 x3) (<= x2 x1) (< y2 y1) (< y3 y2)] (list (cons RC: t)))     ; RC
-      (else (let-values ([(x y) (apply split #false t)])
-      ;(printf "~a: ~a ~b~n" t a b)
-	       (append ;orig: t
-		  (decompose-div (sort trisort (list p1 p2 `(,x ,y))))
-		  (decompose-div (sort trisort (list `(,x ,y) p2 p3)))
-		  ))
-	    ))
-)))
-
 (def (decompose t) ; and tag
  (if (small? t) (list (cons GE: t))
    (cases t || [((x1 y1) as p1) ((x2 y2) as p2) ((x3 y3) as p3)] =>
