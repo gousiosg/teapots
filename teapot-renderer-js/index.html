@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Renderer</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link href="main.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="main">
+			<div id="input-container">
+				<form action="#" method="post">
+					<textarea rows="10" cols="80" id="input" placeholder="Input goes here..."></textarea>
+					<div id="control-div">
+						<input type="checkbox" name="color" id="color" /> <label for="color">Randomize color</label>
+						<input type="button" id="render" value="Render">
+					</div>
+				</form>
+			</div>
+			<canvas id="container" width="600"></canvas> 
+		</div>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script type="text/javascript" src="src/prelude-browser-min.js"></script>
+		<script type="text/javascript" src="src/renderer.js"></script>
+	</body>
+</html>
