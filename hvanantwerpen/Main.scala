@@ -18,12 +18,22 @@ object Main {
                 System.out.println("calculated threshold = "+t)
                 t
             }
+            val t0 = System.currentTimeMillis
             val reducedTriangles = reduceTriangles(threshold, triangles)
-            System.out.println("nTriangles = "+(reducedTriangles length))
+            val dt = System.currentTimeMillis-t0
+            System.out.println("nTriangles = "+(reducedTriangles length)+" in "+(dt/1000.0)+"s")
             val reducedShapes = reducedTriangles map(createShape)
             val triangleShapes = triangles map(createShape)
             plot(reducedShapes,triangleShapes)
         }
     }
 
+    def guessThreshold(ts:Triangles) : Double = {
+		val minX = ts flatMap( xs ) reduceLeft( _ min _ )
+		val minY = ts flatMap( ys ) reduceLeft( _ min _ )
+		val maxX = ts flatMap( xs ) reduceLeft( _ max _ )
+		val maxY = ts flatMap( ys ) reduceLeft( _ max _ )
+		( ( maxX - minX ) min ( maxY - minY ) ) / 1000.0
+    }
+    
 }

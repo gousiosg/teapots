@@ -1,5 +1,18 @@
-Teapot - Another Scala implementation
-=====================================
+Teapot - Yet another Scala implementation
+=========================================
+
+Per request, three versions are included to show how the code
+developed. The last version is run, but this can be changed by changing
+the import in Main.scala.
+
+Interesting observation (#triangles ~ 237k):
+
+<table>
+    <tr><td>Version</td><td>#lines</td><td>runtime (s)</td></tr>
+    <tr><td>ReductionV1</td><td>43</td><td>30.64</td></tr>
+    <tr><td>ReductionV2</td><td>63</td><td>3.11</td></tr>
+    <tr><td>ReductionV3</td><td>71</td><td>2.78</td></tr>
+</table>
 
 Description
 -----------
@@ -35,13 +48,23 @@ Plotting is done with the Swing and the Java2D API.
 Running
 -------
 
-For standard mode run as
+Compile with
 
-    scala Teapot.scala ../teapot.txt
+    scalac Types.scala Read.scala Plot.scala ReductionV1.scala ReductionV2.scala ReductionV3.scala Main.scala
 
-or, if you want a higher threshold (i.e. less triangles), try
+Then run with
 
-    scala Teapot.scala ../teapot.txt 0.5
+    scala -cp . Main ../teapot.txt
+
+or, if you want a higher threshold (i.e. less triangles), with
+
+    scala -cp . Main ../teapot.txt 0.5
+
+If you want to run ReductionV1, increase the stack size with
+
+    scala -J-Xss1024m -cp . Main ../teapot.txt
+
+Instead of all this, you can also use {build,run}.sh scripts.
 
 Output
 ------
