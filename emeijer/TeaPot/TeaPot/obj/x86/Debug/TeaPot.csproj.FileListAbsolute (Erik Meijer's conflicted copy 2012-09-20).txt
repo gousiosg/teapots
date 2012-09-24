@@ -1,0 +1,14 @@
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\bin\Debug\TeaPot.exe
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\bin\Debug\TeaPot.pdb
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\obj\x86\Debug\TeaPot.exe
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\obj\x86\Debug\TeaPot.pdb
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\bin\Debug\System.Interactive.dll
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\bin\Debug\System.Interactive.xml
+C:\Users\emeijer\AppData\Local\Temporary Projects\TeaPot\obj\x86\Debug\TeaPot.csprojResolveAssemblyReference.cache
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\obj\x86\Debug\TeaPot.exe
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\obj\x86\Debug\TeaPot.pdb
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Debug\TeaPot.exe
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Debug\TeaPot.pdb
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Debug\System.Interactive.dll
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Debug\System.Interactive.xml
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\obj\x86\Debug\TeaPot.csprojResolveAssemblyReference.cache

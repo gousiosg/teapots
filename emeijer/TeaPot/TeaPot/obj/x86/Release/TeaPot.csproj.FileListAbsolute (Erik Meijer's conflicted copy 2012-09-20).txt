@@ -1,0 +1,6 @@
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Release\TeaPot.exe
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Release\TeaPot.pdb
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Release\System.Interactive.dll
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\bin\Release\System.Interactive.xml
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\obj\x86\Release\TeaPot.exe
+C:\Users\emeijer\Dropbox\Visual Studio 2010\TeaPot\TeaPot\obj\x86\Release\TeaPot.pdb
