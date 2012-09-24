@@ -69,4 +69,4 @@ Instead of all this, you can also use {build,run}.sh scripts.
 Output
 ------
 
-![Teapot](Teapot.png "Teapot")
+<img src="https://github.com/hendrikvanantwerpen/teapots/blob/master/hvanantwerpen/Teapot.png?raw=true"/>
