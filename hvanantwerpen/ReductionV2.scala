@@ -12,22 +12,22 @@ object ReductionV2 {
     }
 
     @tailrec def unfoldAcc(threshold:Double, fresh:Triangles, cooked:Triangles) : Triangles = {
-	    fresh match {
-	        case Nil => cooked
-	        case _   => {
-	            val reduc = reduceTriangle(threshold)(_)
-	            val es = (fresh map( reduc )
-	                            flatMap( _ fold( t => List(t), ts => ts ) )
-	                            map( transposeT )
-	                            map reduc)
-	
-	            val c = (for ( Left( t ) <- es ) yield transposeT(t))
-	            val f = ((for ( Right( t ) <- es ) yield t map transposeT)
-	                     flatMap identity)
-	
-	            unfoldAcc( threshold, f, c ++ cooked )
-	        }
-	    }
+        fresh match {
+            case Nil => cooked
+            case _   => {
+                val reduc = reduceTriangle(threshold)(_)
+                val es = (fresh map( reduc )
+                                flatMap( _ fold( t => List(t), ts => ts ) )
+                                map( transposeT )
+                                map reduc)
+    
+                val c = (for ( Left( t ) <- es ) yield transposeT(t))
+                val f = ((for ( Right( t ) <- es ) yield t map transposeT)
+                         flatMap identity)
+    
+                unfoldAcc( threshold, f, c ++ cooked )
+            }
+        }
     }
 
     def reduceTriangle(threshold:Double)(t:Triangle) : Either[Triangle,Triangles] = {

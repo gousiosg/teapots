@@ -29,11 +29,11 @@ object Main {
     }
 
     def guessThreshold(ts:Triangles) : Double = {
-		val minX = ts flatMap( xs ) reduceLeft( _ min _ )
-		val minY = ts flatMap( ys ) reduceLeft( _ min _ )
-		val maxX = ts flatMap( xs ) reduceLeft( _ max _ )
-		val maxY = ts flatMap( ys ) reduceLeft( _ max _ )
-		( ( maxX - minX ) min ( maxY - minY ) ) / 1000.0
+        val minX = ts flatMap( xs ) reduceLeft( _ min _ )
+        val minY = ts flatMap( ys ) reduceLeft( _ min _ )
+        val maxX = ts flatMap( xs ) reduceLeft( _ max _ )
+        val maxY = ts flatMap( ys ) reduceLeft( _ max _ )
+        ( ( maxX - minX ) min ( maxY - minY ) ) / 1000.0
     }
     
 }

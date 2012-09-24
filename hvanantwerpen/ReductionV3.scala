@@ -3,39 +3,39 @@ import Types._
 
 object ReductionV3 {
 
-	def square(x:Double):Double = x * x
-	def sum(x:Double, y:Double):Double = x + y
-	def sumOfSquares(xs:List[Double]):Double = xs map( square ) reduceLeft( sum )
-	
+    def square(x:Double):Double = x * x
+    def sum(x:Double, y:Double):Double = x + y
+    def sumOfSquares(xs:List[Double]):Double = xs map( square ) reduceLeft( sum )
+    
     def reduceRightToLeft[A,B]( f:A => Either[B,List[A]], init:List[A] ) : List[B] = {
         @tailrec def acc(as:List[A], bs:List[B]) : List[B] = {
-        	as match {
-        		case Nil   => bs reverse
-    			case e::es => {
-    				val (nextAs,nextBs) = f(e) match {
-    				  	case Left( newB )  => (es, newB :: bs)
-    				  	case Right( newAs ) => (newAs ++ es, bs)
-    				}
-    				acc(nextAs, nextBs)
-    			}
-        	}
+            as match {
+                case Nil   => bs reverse
+                case e::es => {
+                    val (nextAs,nextBs) = f(e) match {
+                        case Left( newB )  => (es, newB :: bs)
+                        case Right( newAs ) => (newAs ++ es, bs)
+                    }
+                    acc(nextAs, nextBs)
+                }
+            }
         }      
         acc(init,Nil)
     }
-	
+    
     def reduceTriangles(threshold:Double, ts:Triangles) : Triangles = {
-		reduceRightToLeft[Triangle,Triangle]( reduceTriangle2D(threshold)(_), ts )
+        reduceRightToLeft[Triangle,Triangle]( reduceTriangle2D(threshold)(_), ts )
     }
     
     def reduceTriangle2D(threshold:Double)(t:Triangle) : Either[Triangle,Triangles] = {
-		(for {
-			e <- ( reduceTriangle1D( threshold )( t )
-				   left )
-			e <- ( reduceTriangle1D( threshold )( transposeT( e ) )
-			       fold( l => Left( transposeT( l ) ), 
-			             rs => Right( rs map( transposeT ) ) )
-			       left )
-		} yield e)
+        (for {
+            e <- ( reduceTriangle1D( threshold )( t )
+                   left )
+            e <- ( reduceTriangle1D( threshold )( transposeT( e ) )
+                   fold( l => Left( transposeT( l ) ), 
+                         rs => Right( rs map( transposeT ) ) )
+                   left )
+        } yield e)
     }
     
     def reduceTriangle1D(threshold:Double)(t:Triangle) : Either[Triangle,Triangles] = {
