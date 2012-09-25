@@ -10,13 +10,12 @@
       ))
    ))))
 
-
-(def ts (read-model "tri.txt"))
+'(def ts (read-model "tri.txt"))
 
 ;"{0,0}","{0.5,0}","{0,1}"
 ;(pp (decompose '((1 2) (2 3) (3 4))))
 ;(pp (map (fn x => (sort trisort x)) ts))
-(pp (fold append '()
+'(pp (fold append '()
        (map decompose
 	  (map normalize
 	     (map [sort trisort <>] ts)))))
@@ -35,7 +34,7 @@
 	(translate 2 -3 `(:RC (1 1) (0 0.5) (1 0)))
 	)))
 
-(define (<DIV> _ style) (string-append "<div style='" style "'/>"))
+(def (<DIV> _ style) (string-append "<div style='" style "'/>"))
 
 '(for-each (fn x => (display x)(newline))
    (map (fn x => (eval (apply tri->div 0 0 x)))
@@ -48,7 +47,7 @@
     (reverse (normalizes (fold append '()
       (map decompose
 	(map (lambda (x) (sort trisort x))
-	   (read-model "TweakedPot.txt")))
+	   (read-model "/home/pjotr/scheme/TweakedPot.txt")))
       ))))])
    (pp (length divs))
    (with-output-to-file "TweakedPot.divs" (delay
