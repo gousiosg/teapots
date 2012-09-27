@@ -1,3 +1,3 @@
 #!/bin/sh
 
-scala -J-Xss1024m -cp classes Main ../teapot.txt
+scala -J-Xss1024m -cp classes Main $*
