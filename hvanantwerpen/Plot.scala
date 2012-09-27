@@ -1,11 +1,13 @@
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.geom.Path2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.BasicStroke
+import java.awt.Color
+import java.awt.color.ColorSpace
+import java.awt.Graphics
+import java.awt.Graphics2D
+import java.awt.Shape
+import java.awt.geom.Path2D
+import javax.swing.JFrame
+import javax.swing.JPanel
+import scala.math
 import scala.util.Random
 import Types._
 
@@ -21,21 +23,39 @@ object Plot {
     }
 
     def plot(shapes:List[Shape], edges:List[Shape]) = {
-        val panel = new JPanel(){
 
-            object RandomColor {
-                val r = new Random
-                def getNext:Color = new Color(r.nextFloat,r.nextFloat,r.nextFloat)
+        object ColorStream {
+            val r = new Random(System.currentTimeMillis)
+            def offset: Float = (r.nextFloat - 0.5f) / 10f
+            def change(c: Float): Float = {
+                val nc = c + offset
+                if ( nc < 0 ) 0 - nc else { if ( nc > 1f ) 2 - nc else nc }
             }
+            def get: Stream[Color] = {
+                val cs = ColorSpace getInstance(ColorSpace.CS_sRGB)
+                val ch = math.round( (cs.getNumComponents() - 1) * r.nextFloat )
+                def next(c: Color): Stream[Color] = {
+                    val chs = c getComponents( cs, null )
+                    val nchs = chs updated( ch, change( chs( ch ) ) )
+                    val nc = new Color(cs, nchs, 1f)
+                    nc #:: next( nc )
+                }
+                next( new Color(r.nextFloat, r.nextFloat, r.nextFloat) )
+            }
+        }
+
+        val shapeColorPairs = ColorStream.get.zip( shapes )
+
+        val panel = new JPanel(){
 
             override def paintComponent(g:Graphics) = g match {
                 case g2:Graphics2D => {
                     val (xt, yt, scale) = prep(shapes, getWidth, getHeight)
                     g2.translate(xt,yt)
                     g2.scale(scale,scale)
-                    shapes foreach(shape => {
-                        g2.setColor(RandomColor.getNext);
-                        g2.fill(shape)
+                    shapeColorPairs foreach(t => {
+                        g2.setColor(t._1);
+                        g2.fill(t._2)
                     })
                     g2.setStroke(new BasicStroke(1.5f/scale.toFloat))
                     g2.setColor(Color.BLACK);
