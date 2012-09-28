@@ -17,10 +17,10 @@ Interesting observation (#triangles ~ 237k):
 Description
 -----------
 
-The actual splitTriangle function is very simple. It sorts the traingle
-points by y and project the middle point on the line between the two
-others. This function is used for both directions, by transposing the
-coordinates of the argument and the results.
+The actual splitTriangle function is very simple (thanks to Niels). It
+sorts the traingle points by y and project the middle point on the
+line between the two others. This function is used for both directions,
+by transposing the coordinates of the argument and the results.
 
 The function reduceRightToLeft contains the recursion logic. It calls
 a function on every element of the input, but the function can return
@@ -43,7 +43,13 @@ is only executed when the previous didn't split. If both didn't split,
 the result is returned, otherwise the split triangles will be returned
 as inputs for a later iteration.
 
-Plotting is done with the Swing and the Java2D API.
+Plotting is done with the Swing and the Java2D API. The colors are
+generated, starting from a random color and modifying a random color
+channel every next element. I tried to get HSL channels in Java, but
+this was not so easy, so it's just plain boring RGB now. The colors are
+implemented as a Stream, which is Scala's equivalent of an infinite
+list. The first time to plot is pretty slow, after that it should
+be better.
 
 Running
 -------
